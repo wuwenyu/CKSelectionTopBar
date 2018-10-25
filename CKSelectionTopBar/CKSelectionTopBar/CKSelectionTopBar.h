@@ -50,6 +50,10 @@ typedef NS_ENUM(NSUInteger, CKSelectionViewMode) {
 
 @property (nonatomic, assign) BOOL showBottomLine; //是否显示底部跟踪线条默认不显示
 
+@property (nonatomic, copy) NSString *replaceText;//替换推荐的文字（主要是活动的时候）
+@property (nonatomic, copy) NSString *replaceIcon;//替换推荐的文字为图片（主要是活动的时候）
+@property (nonatomic, strong) UIImage *replacePlaceholderIcon; //icon未加载出来时显示的占位图片
+
 //刷新
 - (void)reloadData;
 

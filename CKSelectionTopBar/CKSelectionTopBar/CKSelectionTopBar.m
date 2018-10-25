@@ -72,7 +72,7 @@
     
     _link = [[UIView alloc] init];
     _link.backgroundColor = [UIColor colorWithHexString:@"#ebebeb"];
-
+    
     [self addSubview:_link];
     [_link mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.bottom.and.right.mas_equalTo(0);
@@ -133,6 +133,12 @@
         CKSelectionTopBarItem * item = [[CKSelectionTopBarItem alloc]init];
         NSString * title = _titlesArray[i];
         item.title = title;
+        if (i == 0) {
+            if (self.replaceIcon.length) {
+                item.icon = self.replaceIcon;
+                item.placeholderIcon = self.replacePlaceholderIcon;
+            }
+        }
         item.width = ([title sizeForFont:_font size:CGSizeMake(MAXFLOAT, kCKTopBarHeight - 2 * kCKNormalSpace) mode:NSLineBreakByWordWrapping].width + 3.4 * kCKNormalSpace);
         totalWidth += item.width;
         item.font = _font;
@@ -170,6 +176,14 @@
 }
 
 - (void)setTitlesArray:(NSArray *)titlesArray {
+    if (self.replaceText.length) {
+        //如果有替换的文字，则替换掉第一个tab的文字
+        NSMutableArray *newTitlesArray = [NSMutableArray arrayWithArray:titlesArray];
+        [newTitlesArray replaceObjectAtIndex:0 withObject:self.replaceText];
+        _titlesArray = newTitlesArray.copy;
+        [self reloadData];
+        return;
+    }
     _titlesArray = titlesArray.copy;
     [self reloadData];
 }

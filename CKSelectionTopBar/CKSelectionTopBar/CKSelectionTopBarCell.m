@@ -8,6 +8,7 @@
 #import "CKSelectionTopBarCell.h"
 #import "UIColor+CKSelectionAssist.h"
 #import "Masonry.h"
+#import "UIButton+YYWebImage.h"
 
 @interface CKSelectionTopBarCell()
 
@@ -29,7 +30,7 @@
     }
     [self.button setTitleColor:titleColor forState:UIControlStateNormal];
     [self.button setTitleColor:titleSelectedColor forState:UIControlStateSelected];
-
+    
     self.button.titleLabel.font = item.font;
     [self setSelected:self.selected];
     
@@ -69,6 +70,13 @@
             } else {
                 self.button.layer.borderColor = [UIColor clearColor].CGColor;
             }
+            
+            if (self.item.icon.length) {
+                //选中i情况下，如果有icon的话，则替换文字为图片
+                [self.button setTitle:nil forState:UIControlStateNormal];
+                [self.button yy_setImageWithURL:[NSURL URLWithString:self.item.icon] forState:UIControlStateNormal placeholder:self.item.placeholderIcon];
+            }
+            
             //没有显示边框的情况下才要选中变大
             if (!self.item.isNotScale) {
                 self.button.transform = CGAffineTransformMakeScale(1.15, 1.15);
@@ -76,6 +84,10 @@
                 self.button.transform = CGAffineTransformIdentity;
             }
         } else {
+            if (self.item.icon.length) {
+                [self.button setTitle:self.item.title forState:UIControlStateNormal];
+                [self.button setImage:nil forState:UIControlStateNormal];
+            }
             self.button.titleLabel.font = self.item.font;
             self.button.transform = CGAffineTransformIdentity;
             self.button.selected = NO;

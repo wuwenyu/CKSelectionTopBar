@@ -12,6 +12,9 @@
 
 @property (nonatomic, copy) NSString * title;
 
+@property (nonatomic, copy) NSString *icon; //选择情况下：当icon有值时，替换文字，显示为图片
+@property (nonatomic, strong) UIImage *placeholderIcon; //icon未加载出来时显示的占位图片
+
 @property (nonatomic, assign) CGFloat width;
 
 @property (nonatomic, strong) UIFont * font;   //字体大小
