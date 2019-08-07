@@ -38,5 +38,9 @@
 @property (nonatomic, assign) BOOL isNotScale; //选中是否放大
 
 @property (nonatomic, assign) BOOL showBottomLine; //显示底部跟踪线条
-
+@property (nonatomic, assign) CGFloat bottomLineHeight;//底部跟踪线高度
+@property (nonatomic, assign) CGFloat bottomLineBottomConstraint;//底部线距离底部距离(正值)
+@property (nonatomic, strong) UIColor *bottomLineColor;//底部线颜色
+@property (nonatomic, assign) CGFloat bottomLineLeftOffset;//底部线距离label左边的偏移
+@property (nonatomic, assign) CGFloat bottomLineRightOffset;//底部线距离label右边的偏移
 @end

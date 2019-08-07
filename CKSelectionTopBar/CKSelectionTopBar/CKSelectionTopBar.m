@@ -51,6 +51,11 @@
     _nightColor = [UIColor colorWithHexString:@"9b9b9b"];
     _selectedColor = [UIColor colorWithHexString:@"#2e9fff"];
     _selectedNightColor = [UIColor colorWithHexString:@"#265f8f"];
+    _bottomLineColor = [UIColor colorWithHexString:@"#2e9fff"];
+    _bottomLineHeight = 2;
+    _bottomLineBottomConstraint = 0;
+    _bottomLineLeftOffset = 0;
+    _bottomLineRightOffset = 0;
     self.backgroundColor = [UIColor whiteColor];
     
     _font = [UIFont systemFontOfSize:14];
@@ -145,6 +150,11 @@
         item.selectedFont = _selectedFont;
         item.showBottomLine = _showBottomLine;
         item.selectedColor = _selectedColor;
+        item.bottomLineColor = _bottomLineColor;
+        item.bottomLineHeight = _bottomLineHeight;
+        item.bottomLineBottomConstraint = _bottomLineBottomConstraint;
+        item.bottomLineLeftOffset = _bottomLineLeftOffset;
+        item.bottomLineRightOffset = _bottomLineRightOffset;
         item.selectedNightColor = _selectedNightColor;
         item.nightColor = _nightColor;
         item.normalColor = _normalColor;

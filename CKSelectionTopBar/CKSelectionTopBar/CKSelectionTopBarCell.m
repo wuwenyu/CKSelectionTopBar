@@ -20,6 +20,7 @@
 @implementation CKSelectionTopBarCell
 
 - (void)setItem:(CKSelectionTopBarItem *)item {
+    [self bottomLine];
     _item = item;
     [self.button setTitle:item.title forState:UIControlStateNormal];
     UIColor * titleColor = _item.normalColor;
@@ -43,8 +44,18 @@
     }
     if (selected) {
         if (_item.showBottomLine) {
-            self.bottomLine.backgroundColor = _item.selectedColor;
+            self.bottomLine.backgroundColor = _item.bottomLineColor;
             self.bottomLine.hidden = NO;
+            [_bottomLine mas_updateConstraints:^(MASConstraintMaker *make) {
+                CGFloat left = _item.bottomLineLeftOffset;
+                CGFloat right = _item.bottomLineRightOffset;
+                CGFloat bottom = _item.bottomLineBottomConstraint;
+                CGFloat height = _item.bottomLineHeight;
+                make.left.mas_equalTo(self.button.titleLabel.mas_left).offset(-left);
+                make.right.mas_equalTo(self.button.titleLabel.mas_right).offset(right);
+                make.bottom.mas_equalTo(-bottom);
+                make.height.mas_equalTo(height);
+            }];
         }
     } else {
         if (_item.showBottomLine) {
@@ -120,11 +131,22 @@
     if (!_bottomLine) {
         _bottomLine = [[UIView alloc] init];
         [self.contentView addSubview:_bottomLine];
+        _bottomLine.hidden = YES;
         [_bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.button.titleLabel.mas_left);
-            make.right.mas_equalTo(self.button.titleLabel.mas_right);
-            make.bottom.mas_equalTo(0);
-            make.height.mas_equalTo(2);
+            CGFloat left = 0;
+            CGFloat right = 0;
+            CGFloat bottom = 0;
+            CGFloat height = 2;
+            if (_item) {
+                left = _item.bottomLineLeftOffset;
+                right = _item.bottomLineRightOffset;
+                bottom = _item.bottomLineBottomConstraint;
+                height = _item.bottomLineHeight;
+            }
+            make.left.mas_equalTo(self.button.titleLabel.mas_left).offset(-left);
+            make.right.mas_equalTo(self.button.titleLabel.mas_right).offset(right);
+            make.bottom.mas_equalTo(-bottom);
+            make.height.mas_equalTo(height);
         }];
     }
     return _bottomLine;
