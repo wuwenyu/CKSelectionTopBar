@@ -201,7 +201,15 @@
 - (void)setIndex:(NSUInteger)index animated:(BOOL)animated {
     _selectedIndex = index;
     @try{
-        [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+        if (@available(iOS 13.0, *)) {
+            if (index == 0) {
+                [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+            }else {
+                [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+            }
+        }else {
+            [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+        }
     }
     @catch (NSException * exception){}
     @finally{};
