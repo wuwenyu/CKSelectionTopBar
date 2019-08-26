@@ -56,6 +56,9 @@
     _bottomLineBottomConstraint = 0;
     _bottomLineLeftOffset = 0;
     _bottomLineRightOffset = 0;
+    _bottomLineWidth = 0;
+    _titleBottomConstraint = 0;
+    _titleTopConstraint = 0;
     self.backgroundColor = [UIColor whiteColor];
     
     _font = [UIFont systemFontOfSize:14];
@@ -160,6 +163,9 @@
         item.normalColor = _normalColor;
         item.backgroundColor = [UIColor whiteColor];
         item.isNotScale = _isNotScale;
+        item.bottomLineWidth = _bottomLineWidth;
+        item.titleTopConstraint = _titleTopConstraint;
+        item.titleBottomConstraint = _titleBottomConstraint;
         if (_selectedBorderColor) {
             item.selectedBorderColor = _selectedBorderColor;
             item.isNotScale = YES;

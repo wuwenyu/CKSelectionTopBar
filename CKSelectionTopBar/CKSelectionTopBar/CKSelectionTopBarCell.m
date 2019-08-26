@@ -33,6 +33,14 @@
     [self.button setTitleColor:titleSelectedColor forState:UIControlStateSelected];
     
     self.button.titleLabel.font = item.font;
+    if (_item.titleBottomConstraint > 0 && _item.titleTopConstraint > 0) {
+        [_button mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(8);
+            make.top.mas_equalTo(_item.titleTopConstraint);
+            make.bottom.mas_equalTo(-_item.titleBottomConstraint);
+            make.right.mas_equalTo(-8);
+        }];
+    }
     [self setSelected:self.selected];
     
 }
@@ -46,15 +54,26 @@
         if (_item.showBottomLine) {
             self.bottomLine.backgroundColor = _item.bottomLineColor;
             self.bottomLine.hidden = NO;
-            [_bottomLine mas_updateConstraints:^(MASConstraintMaker *make) {
+            [_bottomLine mas_remakeConstraints:^(MASConstraintMaker *make) {
                 CGFloat left = _item.bottomLineLeftOffset;
                 CGFloat right = _item.bottomLineRightOffset;
                 CGFloat bottom = _item.bottomLineBottomConstraint;
                 CGFloat height = _item.bottomLineHeight;
-                make.left.mas_equalTo(self.button.titleLabel.mas_left).offset(-left);
-                make.right.mas_equalTo(self.button.titleLabel.mas_right).offset(right);
-                make.bottom.mas_equalTo(-bottom);
-                make.height.mas_equalTo(height);
+                if (_item.bottomLineWidth > 0) {
+                    make.bottom.mas_equalTo(-bottom);
+                    make.height.mas_equalTo(height);
+                    make.width.mas_equalTo(_item.bottomLineWidth);
+                    make.centerX.equalTo(self.contentView);
+                }else {
+                    make.left.mas_equalTo(self.button.titleLabel.mas_left).offset(-left);
+                    make.right.mas_equalTo(self.button.titleLabel.mas_right).offset(right);
+                    make.bottom.mas_equalTo(-bottom);
+                    make.height.mas_equalTo(height);
+                }
+                //                make.left.mas_equalTo(self.button.titleLabel.mas_left).offset(-left);
+                //                make.right.mas_equalTo(self.button.titleLabel.mas_right).offset(right);
+                //                make.bottom.mas_equalTo(-bottom);
+                //                make.height.mas_equalTo(height);
             }];
         }
     } else {
@@ -116,6 +135,9 @@
         _button.layer.borderWidth = 0.5;
         _button.layer.cornerRadius = 12;
         _button.userInteractionEnabled = NO;
+        _button.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _button.titleLabel.textAlignment = NSTextAlignmentCenter;
+        _button.titleLabel.numberOfLines = 0;
         _button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         [_button mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(8);
@@ -143,10 +165,18 @@
                 bottom = _item.bottomLineBottomConstraint;
                 height = _item.bottomLineHeight;
             }
-            make.left.mas_equalTo(self.button.titleLabel.mas_left).offset(-left);
-            make.right.mas_equalTo(self.button.titleLabel.mas_right).offset(right);
-            make.bottom.mas_equalTo(-bottom);
-            make.height.mas_equalTo(height);
+            
+            if (_item.bottomLineWidth > 0) {
+                make.bottom.mas_equalTo(-bottom);
+                make.height.mas_equalTo(height);
+                make.width.mas_equalTo(_item.bottomLineWidth);
+                make.centerX.equalTo(self.contentView);
+            }else {
+                make.left.mas_equalTo(self.button.titleLabel.mas_left).offset(-left);
+                make.right.mas_equalTo(self.button.titleLabel.mas_right).offset(right);
+                make.bottom.mas_equalTo(-bottom);
+                make.height.mas_equalTo(height);
+            }
         }];
     }
     return _bottomLine;
