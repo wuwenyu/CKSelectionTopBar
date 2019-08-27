@@ -44,7 +44,7 @@
 }
 
 - (void)defaultInit {
-    
+    _topBarHeight = kCKTopBarHeight;
     _font = [UIFont systemFontOfSize:14.0f];
     _selectedFont = [UIFont systemFontOfSize:14.0f];
     _normalColor = [UIColor colorWithHexString:@"#333333"];
@@ -147,7 +147,7 @@
                 item.placeholderIcon = self.replacePlaceholderIcon;
             }
         }
-        item.width = ([title sizeForFont:_font size:CGSizeMake(MAXFLOAT, kCKTopBarHeight - 2 * kCKNormalSpace) mode:NSLineBreakByWordWrapping].width + 3.4 * kCKNormalSpace);
+        item.width = ([title sizeForFont:_font size:CGSizeMake(MAXFLOAT, _topBarHeight - 2 * kCKNormalSpace) mode:NSLineBreakByWordWrapping].width + 3.4 * kCKNormalSpace);
         totalWidth += item.width;
         item.font = _font;
         item.selectedFont = _selectedFont;
@@ -288,7 +288,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CKSelectionTopBarItem * item = [_topBarItems objectOrNilAtIndex:indexPath.row];
-    return CGSizeMake(item.width + _addWidth, kCKTopBarHeight);
+    return CGSizeMake(item.width + _addWidth, _topBarHeight);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
@@ -307,4 +307,5 @@
 }
 
 @end
+
 
