@@ -43,6 +43,7 @@
 @property (nonatomic, strong) UIColor *bottomLineColor;//底部线颜色
 @property (nonatomic, assign) CGFloat bottomLineLeftOffset;//底部线距离label左边的偏移
 @property (nonatomic, assign) CGFloat bottomLineRightOffset;//底部线距离label右边的偏移
+@property (nonatomic, assign) CGFloat bottomLineCornerRadius;//底部跟踪线圆角
 @property (nonatomic, assign) CGFloat bottomLineWidth;//底部线宽度（大于0时，则居中显示，左右约束无效）
 @property (nonatomic, assign) CGFloat titleBottomConstraint;//标题距离底部距离(正值)
 @property (nonatomic, assign) CGFloat titleTopConstraint;//标题距离顶部距离(正值)

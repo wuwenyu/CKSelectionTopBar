@@ -58,7 +58,9 @@ typedef NS_ENUM(NSUInteger, CKSelectionViewMode) {
 @property (nonatomic, assign) CGFloat titleTopConstraint;//标题距离顶部距离(正值)
 @property (nonatomic, assign) CGFloat topBarHeight;//bar高度自定义
 
-@property (nonatomic, strong) UIColor *bottomLineColor;//底部线颜色
+@property (nonatomic, strong) UIColor *bottomLineColor;//底部跟踪线颜色
+@property (nonatomic, assign) CGFloat bottomLineCornerRadius;//底部跟踪线圆角
+@property (nonatomic, strong) UIColor *bottomLinkColor;//底部分割线颜色
 @property (nonatomic, copy) NSString *replaceText;//替换推荐的文字（主要是活动的时候）
 @property (nonatomic, copy) NSString *replaceIcon;//替换推荐的文字为图片（主要是活动的时候）
 @property (nonatomic, strong) UIImage *replacePlaceholderIcon; //icon未加载出来时显示的占位图片

@@ -59,6 +59,8 @@
     _bottomLineWidth = 0;
     _titleBottomConstraint = 0;
     _titleTopConstraint = 0;
+    _bottomLinkColor = [UIColor colorWithHexString:@"#ebebeb"];
+    _bottomLineCornerRadius = 0;
     self.backgroundColor = [UIColor whiteColor];
     
     _font = [UIFont systemFontOfSize:14];
@@ -134,6 +136,7 @@
 
 - (void)calculateWidth {
     _topBarItems = @[].mutableCopy;
+    _link.backgroundColor = _bottomLinkColor;
     NSUInteger numberOfTitles = _titlesArray.count;
     CGFloat totalWidth = 0;
     
@@ -158,6 +161,7 @@
         item.bottomLineBottomConstraint = _bottomLineBottomConstraint;
         item.bottomLineLeftOffset = _bottomLineLeftOffset;
         item.bottomLineRightOffset = _bottomLineRightOffset;
+        item.bottomLineCornerRadius = _bottomLineCornerRadius;
         item.selectedNightColor = _selectedNightColor;
         item.nightColor = _nightColor;
         item.normalColor = _normalColor;

@@ -53,6 +53,9 @@
     if (selected) {
         if (_item.showBottomLine) {
             self.bottomLine.backgroundColor = _item.bottomLineColor;
+            if (_item.bottomLineCornerRadius > 0) {
+                self.bottomLine.layer.cornerRadius = _item.bottomLineCornerRadius;
+            }
             self.bottomLine.hidden = NO;
             [_bottomLine mas_remakeConstraints:^(MASConstraintMaker *make) {
                 CGFloat left = _item.bottomLineLeftOffset;
