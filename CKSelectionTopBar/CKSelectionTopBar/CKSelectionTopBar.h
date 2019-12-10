@@ -47,6 +47,7 @@ typedef NS_ENUM(NSUInteger, CKSelectionViewMode) {
 @property (nonatomic, assign) CKSelectionViewMode rightViewMode; //右侧视图显示模式
 
 @property (nonatomic, assign) BOOL isNotScale; //选中是否放大
+@property (nonatomic, assign) BOOL hiddSeparatorLine;//是否隐藏底部分割线
 
 @property (nonatomic, assign) BOOL showBottomLine; //是否显示底部跟踪线条默认不显示
 @property (nonatomic, assign) CGFloat bottomLineHeight;//底部跟踪线高度

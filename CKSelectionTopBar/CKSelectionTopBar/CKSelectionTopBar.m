@@ -138,6 +138,9 @@
     _topBarItems = @[].mutableCopy;
     _link.backgroundColor = _bottomLinkColor;
     NSUInteger numberOfTitles = _titlesArray.count;
+    
+    self.link.hidden = self.hiddSeparatorLine;
+    
     CGFloat totalWidth = 0;
     
     for (NSInteger i = 0; i < numberOfTitles; i++) {
