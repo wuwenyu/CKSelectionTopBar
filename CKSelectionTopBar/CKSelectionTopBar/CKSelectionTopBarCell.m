@@ -20,7 +20,6 @@
 @implementation CKSelectionTopBarCell
 
 - (void)setItem:(CKSelectionTopBarItem *)item {
-    [self bottomLine];
     _item = item;
     [self.button setTitle:item.title forState:UIControlStateNormal];
     UIColor * titleColor = _item.normalColor;
